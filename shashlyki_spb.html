@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔥 Где жарить шашлыки в Петербурге 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Mulish:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --fire: #FF4C0C; --ember: #FF8B3D;
+    --smoke: #2A2520; --ash: #F5F0EB; --coal: #1A1512;
+  }
+  html, body {
+    height: 100%; display: flex; flex-direction: column;
+    overflow: hidden; font-family: 'Mulish', sans-serif;
+    background: var(--coal); color: var(--ash);
+  }
+
+  header {
+    background: var(--smoke); padding: 12px 20px;
+    display: flex; align-items: center; gap: 14px;
+    border-bottom: 2px solid var(--fire); flex-shrink: 0;
+  }
+  .flame { font-size: 26px; animation: flicker 1.5s ease-in-out infinite alternate; }
+  @keyframes flicker {
+    0%   { transform: scale(1)   rotate(-3deg); }
+    100% { transform: scale(1.1) rotate(3deg);  }
+  }
+  .header-text h1 {
+    font-family: 'Unbounded', sans-serif; font-size: 13px;
+    font-weight: 900; color: var(--fire); text-transform: uppercase; line-height: 1.2;
+  }
+  .header-text p { font-size: 11px; color: var(--ember); opacity: .8; margin-top: 2px; }
+  .badge {
+    margin-left: auto; background: var(--fire); color: #fff;
+    font-family: 'Unbounded', sans-serif; font-size: 10px; font-weight: 700;
+    padding: 4px 12px; border-radius: 20px; white-space: nowrap;
+  }
+
+  .warn {
+    background: linear-gradient(90deg,#7a2a00,#a33c00,#7a2a00);
+    background-size: 200% 100%; animation: shimmer 4s linear infinite;
+    padding: 6px 20px; font-size: 11px; font-weight: 600;
+    text-align: center; color: #ffc299; flex-shrink: 0;
+  }
+  @keyframes shimmer { to { background-position: 200% 50%; } }
+
+  .main { display: flex; flex: 1; overflow: hidden; min-height: 0; }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: 300px; flex-shrink: 0; background: var(--smoke);
+    display: flex; flex-direction: column; overflow: hidden;
+    border-right: 1px solid rgba(255,76,12,.25);
+  }
+  .sidebar-head {
+    padding: 14px 16px 10px; flex-shrink: 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .sidebar-head h2 {
+    font-family: 'Unbounded', sans-serif; font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px; color: var(--ember); margin-bottom: 8px;
+  }
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .fbtn {
+    background: rgba(255,76,12,.12); border: 1px solid rgba(255,76,12,.3);
+    color: var(--ember); font-family: 'Mulish', sans-serif;
+    font-size: 10px; font-weight: 600; padding: 4px 10px;
+    border-radius: 20px; cursor: pointer; transition: all .2s;
+  }
+  .fbtn:hover, .fbtn.on { background: var(--fire); border-color: var(--fire); color: #fff; }
+
+  #list { overflow-y: auto; flex: 1; }
+  #list::-webkit-scrollbar { width: 4px; }
+  #list::-webkit-scrollbar-thumb { background: var(--fire); border-radius: 2px; }
+
+  .card {
+    padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,.06);
+    cursor: pointer; transition: background .15s;
+    display: flex; gap: 10px; align-items: flex-start;
+    border-left: 3px solid transparent;
+  }
+  .card:hover  { background: rgba(255,76,12,.08); }
+  .card.active { background: rgba(255,76,12,.15); border-left-color: var(--fire); }
+  .ci { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .cn h3    { font-size: 12px; font-weight: 700; color: var(--ash); line-height: 1.3; margin-bottom: 3px; }
+  .cn .dist { font-size: 10px; color: var(--ember); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+  .cn .dsc  { font-size: 10px; color: rgba(245,240,235,.55); line-height: 1.4; }
+  .tags     { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 5px; }
+  .tag { font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 10px; }
+  .tag.free   { background: rgba(50,200,100,.15); color: #7de8a0; }
+  .tag.water  { background: rgba(50,150,255,.15); color: #7cc4ff; }
+  .tag.bbq    { background: rgba(255,76,12,.15);  color: #ff9f7a; }
+  .tag.gazebo { background: rgba(200,150,50,.15); color: #ffd97a; }
+
+  /* ── Map ── */
+  .map-wrap { flex: 1; position: relative; min-width: 0; }
+  #ymap { width: 100%; height: 100%; border: none; display: block; }
+
+  .legend {
+    position: absolute; bottom: 36px; right: 14px; z-index: 10;
+    background: var(--smoke); border: 1px solid rgba(255,76,12,.35);
+    border-radius: 10px; padding: 10px 14px; pointer-events: none;
+  }
+  .legend .lt {
+    font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 700;
+    color: var(--ember); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px;
+  }
+  .legend .li { display: flex; align-items: center; gap: 7px; font-size: 10px; color: rgba(245,240,235,.75); margin-bottom: 4px; }
+
+  @media (max-width: 640px) { .sidebar { display: none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="flame">🔥</div>
+  <div class="header-text">
+    <h1>Где жарить шашлыки в Петербурге</h1>
+    <p>Официальные мангальные зоны · Сезон 2025</p>
+  </div>
+  <div class="badge">46 адресов</div>
+</header>
+
+<div class="warn">
+  ⚠️ С 15 апреля действует пожароопасный сезон — жарить шашлыки разрешено только в отведённых местах. Штраф: 3 000–5 000 ₽
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <div class="sidebar-head">
+      <h2>Список мест</h2>
+      <div class="filters">
+        <button class="fbtn on"  onclick="filter('all',this)">Все</button>
+        <button class="fbtn"     onclick="filter('city',this)">В городе</button>
+        <button class="fbtn"     onclick="filter('north',this)">Север / залив</button>
+        <button class="fbtn"     onclick="filter('south',this)">Юг / запад</button>
+      </div>
+    </div>
+    <div id="list"></div>
+  </div>
+
+  <div class="map-wrap">
+    <iframe id="ymap" allowfullscreen></iframe>
+
+    <div class="legend">
+      <div class="lt">Что есть на месте</div>
+      <div class="li"><span>🆓</span> Бесплатно</div>
+      <div class="li"><span>🔥</span> Мангал / мангальная зона</div>
+      <div class="li"><span>💧</span> Вода рядом</div>
+      <div class="li"><span>🏚</span> Беседка с навесом</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const places = [
+  { id:1,  name:"Южно-Приморский парк",                                              dist:"Красносельский р-н",        zone:"city",  lat:59.8530, lng:30.1704, desc:"Одна из 2 официальных зон в черте города. Беседки с мангалами рядом с водой.", tags:["free","bbq","gazebo"], icon:"🌳" },
+  { id:2,  name:"Заповедник у озера Долгое (пр. Королёва / ул. Маршала Новикова)",  dist:"Приморский р-н",            zone:"city",  lat:60.0184, lng:30.2611, desc:"Второе официальное место в черте города. Беседки, мангалы, озеро Долгое, рыбалка.", tags:["free","bbq","gazebo","water"], icon:"🏕️" },
+  { id:3,  name:"Пляж Ласковый — мангальная зона",                                  dist:"Курортный р-н, Сестрорецк", zone:"north", lat:60.1426, lng:29.9299, desc:"Популярное место у Финского залива. Стационарные мангалы, беседки, чистая территория.", tags:["free","bbq","gazebo","water"], icon:"🏖️" },
+  { id:4,  name:"Лисий Нос — пикниковая зона",                                      dist:"Приморский р-н",            zone:"north", lat:60.0140, lng:30.0128, desc:"Любимое место петербуржцев у берега. Беседки, маршруты с детьми.", tags:["free","bbq","gazebo","water"], icon:"🌲" },
+  { id:5,  name:"Сестрорецкий Разлив — мангальная зона",                            dist:"Курортный р-н",             zone:"north", lat:60.0846, lng:29.9984, desc:"Живописное озеро, широкий пляж, беседка, место под мангал.", tags:["free","bbq","gazebo","water"], icon:"🌊" },
+  { id:6,  name:"Смолячково — р. Приветная",                                         dist:"Курортный р-н",             zone:"north", lat:60.1803, lng:29.4961, desc:"Беседка, мангал в лесу. До пляжа Финского залива — 500 м. Электричка до ст. Приветненское.", tags:["free","bbq","gazebo","water"], icon:"🌿" },
+  { id:7,  name:"Новосёлки — 2 мангальные площадки",                                dist:"Приморский р-н",            zone:"north", lat:60.0968, lng:30.1382, desc:"2 площадки, рядом карьер для купания и рыбалки. Автобус от м. Парнас.", tags:["free","bbq","water"], icon:"🎣" },
+  { id:8,  name:"Юнтоловский заповедник — пикниковая зона",                         dist:"Приморский р-н",            zone:"city",  lat:60.0032, lng:30.1901, desc:"Конец Юнтоловского просп. Природный заповедник, вода, тишина.", tags:["free","bbq","water"], icon:"🦆" },
+  { id:9,  name:"Лахта-Ольгино — мангальная зона",                                  dist:"Приморский р-н",            zone:"city",  lat:59.9970, lng:30.1472, desc:"Оборудованное место вблизи Финского залива, мкр. Лахта-Ольгино.", tags:["free","bbq","water"], icon:"🌅" },
+  { id:10, name:"Посёлок Песочный — 3 мангальные зоны",                             dist:"Курортный р-н",             zone:"north", lat:60.1224, lng:30.1640, desc:"Три площадки в посёлке Песочный. Лесной массив, столики, беседки, урны.", tags:["free","bbq","gazebo"], icon:"🌲" },
+  { id:11, name:"Левашово — 2 мангальные площадки",                                 dist:"Выборгский р-н",            zone:"north", lat:60.0570, lng:30.2304, desc:"2 площадки в посёлке Левашово. Рядом карьер. ~8 км от КАД.", tags:["free","bbq","water"], icon:"🏊" },
+  { id:12, name:"Стрельна — заказник «Шунгеровский»",                               dist:"Петродворцовый р-н",        zone:"south", lat:59.8258, lng:30.0590, desc:"Несколько мест у природного заказника «Шунгеровский». Лесопарк рядом.", tags:["free","bbq"], icon:"🌾" },
+  { id:13, name:"Ломоносов — Красный пруд (4 зоны)",                                dist:"Петродворцовый р-н",        zone:"south", lat:59.9061, lng:29.7588, desc:"4 зоны: у ул. Новая дорога, Красного пруда и 2 у ул. Федюнинского.", tags:["free","bbq","water"], icon:"🏞️" },
+  { id:14, name:"Репино / Солнечное — 4 зоны (Комаровское лесничество)",            dist:"Курортный р-н",             zone:"north", lat:60.1750, lng:29.8450, desc:"4 площадки у посёлков Репино и Солнечное. Берег залива, хвойный лес.", tags:["free","bbq","water"], icon:"🌊" },
+  { id:15, name:"Ушково — 3 мангальные зоны",                                       dist:"Курортный р-н",             zone:"north", lat:60.2080, lng:29.5170, desc:"3 места в Ушково (Комаровское лесничество). До Зеленогорска — 12 км.", tags:["free","bbq"], icon:"🌲" },
+  { id:16, name:"Серово — 2 мангальные зоны",                                       dist:"Курортный р-н",             zone:"north", lat:60.1950, lng:29.5680, desc:"2 площадки в посёлке Серово. Сосновый лес, близко к заливу.", tags:["free","bbq"], icon:"🌲" },
+];
+
+const tagLabel = { free:"🆓 Бесплатно", bbq:"🔥 Мангал", water:"💧 Вода", gazebo:"🏚 Беседка" };
+
+// Build Yandex iframe URL with ALL points
+function buildMapUrl(pts, center, zoom) {
+  const ptParam = pts.map(p => `${p.lng},${p.lat},pm2rdm`).join('~');
+  const c = center || { lat:60.05, lng:30.20 };
+  const z = zoom || 10;
+  return `https://yandex.ru/map-widget/v1/?ll=${c.lng},${c.lat}&z=${z}&pt=${ptParam}&l=map`;
+}
+
+let activeId = null;
+let curFilter = 'all';
+
+function setMap(pts, center, zoom) {
+  document.getElementById('ymap').src = buildMapUrl(pts, center, zoom);
+}
+
+// Initial load — all points overview
+setMap(places, { lat:60.05, lng:30.20 }, 10);
+
+function renderList(filt) {
+  curFilter = filt;
+  const items = filt === 'all' ? places : places.filter(p => p.zone === filt);
+  const el = document.getElementById('list');
+  el.innerHTML = '';
+  items.forEach(p => {
+    const tagsHtml = p.tags.map(t => `<span class="tag ${t}">${tagLabel[t]}</span>`).join('');
+    const card = document.createElement('div');
+    card.className = 'card' + (p.id === activeId ? ' active' : '');
+    card.id = 'c' + p.id;
+    card.innerHTML = `
+      <div class="ci">${p.icon}</div>
+      <div class="cn">
+        <div class="dist">${p.dist}</div>
+        <h3>${p.name}</h3>
+        <div class="dsc">${p.desc}</div>
+        <div class="tags">${tagsHtml}</div>
+      </div>`;
+    card.onclick = () => {
+      // zoom into single point on click
+      setMap([p], { lat: p.lat, lng: p.lng }, 15);
+      highlight(p.id);
+    };
+    el.appendChild(card);
+  });
+}
+
+function highlight(id) {
+  document.getElementById('c' + activeId)?.classList.remove('active');
+  activeId = id;
+  const c = document.getElementById('c' + id);
+  if (c) { c.classList.add('active'); c.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+}
+
+function filter(zone, btn) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  activeId = null;
+  renderList(zone);
+  const pts = zone === 'all' ? places : places.filter(p => p.zone === zone);
+  // compute center
+  const avgLat = pts.reduce((s,p) => s+p.lat, 0) / pts.length;
+  const avgLng = pts.reduce((s,p) => s+p.lng, 0) / pts.length;
+  setMap(pts, { lat: avgLat, lng: avgLng }, zone === 'city' ? 12 : 10);
+}
+
+renderList('all');
+</script>
+</body>
+</html>
